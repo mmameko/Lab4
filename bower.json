@@ -1,0 +1,14 @@
+{
+  "name": "lab-4",
+  "description": "",
+  "main": "Gulpfile.js",
+  "license": "ISC",
+  "homepage": "https://github.com/mmameko/Lab4",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

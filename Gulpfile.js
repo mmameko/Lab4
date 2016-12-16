@@ -4,25 +4,30 @@ var gulp = require("gulp"),
 	watch = require("gulp-watch"),
 	browserSync = require("browser-sync"),
     reload = browserSync.reload,
-	systemjsBuilder = require('gulp-systemjs-builder');
-
+	systemjsBuilder = require('gulp-systemjs-builder'),
+	less = require('gulp-less'),
+	pathes = require('path'),
+	LessAutoprefix = require('less-plugin-autoprefix'),
+	autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
+	
 var path = {
 	systemJSCongif: "./system.config.js",
 	src: {
 		img: "",
-		js: "src/main.js",
-		styles: "",
-		html: "src/html/**/*.html"
+		js: "src/js/main.js",
+		styles: "src/styles/app.less",
+		html: "src/*.html"
 	},
 	build: {
 		img: "",
-		js: "./build/",
-		styles: "",
-		html: "build/html/"
+		js: "build/js/",
+		styles: "build/styles/",
+		html: "build/"
 	},
 	watch: {
-		html: "src/html/**/*.html",
-		js: "src/**/*.js"
+		html: "src/**/*.html",
+		js: "src/**/*.js",
+		styles: "src/**/*.less"
 	}
 };
 
@@ -50,18 +55,26 @@ gulp.task("build:html", function(){
 });
 
 gulp.task("build:js", function(){
-	var builder = systemjsBuilder();
-	
-	builder.loadConfigSync(path.systemJSCongif);
-	
-	return builder.buildStatic(path.src.js, {
-		minify: false,
-		mangle: false
-	})		
-	.pipe(gulp.dest(path.build.js))
-	.pipe(reload({
-		stream: true
-	}));
+	return gulp.src(path.src.js)
+		.pipe(babel({
+			presets: [ "es2015" ]
+		}))
+		.pipe(rigger())
+		.pipe(gulp.dest(path.build.js))
+		.pipe(reload({
+			stream: true
+		}));
+});
+
+gulp.task("build:styles", function(){
+	return gulp.src(path.src.styles)
+		.pipe(less({			
+			plugins: [ autoprefix ]
+		}))
+		.pipe(gulp.dest(path.build.styles))
+		.pipe(reload({
+			stream: true
+		}));
 });
 
 gulp.task("watch", function(){
@@ -72,10 +85,20 @@ gulp.task("watch", function(){
 	watch([ path.watch.js ], function(event, cb){
 		gulp.start("build:js");
 	});
+	
+	watch([ path.watch.styles ], function(event, cb){		
+		gulp.start("build:styles");
+	});
+});
+
+gulp.task("build", function(){
+	gulp.start("build:js");
+	gulp.start("build:styles");
+	gulp.start("build:html");
 });
 
 gulp.task('webserver', function () {
     browserSync(config);
 });
 
-gulp.task("default", [ "watch", "webserver" ]);
+gulp.task("default", [ "build",  "watch", "webserver" ]);

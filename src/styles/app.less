@@ -1,0 +1,105 @@
+@import "_variables";
+
+@import "_header";
+@import "_footer";
+@import "_content";
+
+body,
+html{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+	font-size: 0;
+}
+
+.app-wrapper{
+	height: 100%;
+}
+
+.app-header,
+.app-footer{
+	box-sizing: border-box;
+}
+
+.btn{
+	display: inline-block;
+	width: @btnWidth;
+	height: @btnHeight;	
+	border-radius: @btnBorderRadius;
+	border: @btnBorder;	
+	background-color: @btnMainColor;
+	box-shadow: none;
+	outline: 0;
+	margin: @btnMargin;
+	text-transform: uppercase;	
+	font-size: 12px;
+	font-weight: 700;
+	color: darken(@btnMainColor, 50%);
+	will-change: background-color;
+	transition: background-color 150ms;	
+	
+	&:hover{
+		cursor: pointer;
+		will-change: background-color;
+		background-color: mix(@btnMainColor, #fff);
+		transition: background-color 250ms;
+	}
+	
+	&:active{
+		background-color: darken(@btnMainColor, 15%);
+	}
+	
+	&:first-of-type{
+		margin: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

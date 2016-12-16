@@ -1,16 +1,28 @@
 <!doctype html>
-<html ng-app>
+<html>
 	<head>
-		<title>Laboratiry Work #4</title>
-		<script src="../../js/main.js"></script>
+		<title>Web Lab #4</title>
+				
+		<script src="../js/main.js"></script>
+		<link rel="stylesheet" href="../styles/app.css"/>
 	</head>
 	<body>
-		<header>
-			Header
-		</header>
-		<div ng-view>
-		</div>
-		<footer>
-		</footer>
+		<div class="app-wrapper">
+			<header class="app-header">
+				<section class="app-header_section app-header_section__left">
+					<input type="button" value="Test" class="btn btn__selected"/>
+					<input type="button" value="Settings" class="btn"/>
+				</section>
+				<section class="app-header_section app-header_section__right">
+					<input type="button" value="Check" class="btn"/>		
+				</section>	
+			</header>
+			<div class="app-content" ng-view>
+				Content
+			</div>
+			<footer class="app-footer">
+				&copy Laboratory Work, 4th variant, Mameko Daria
+			</footer>
+		</div>		
 	</body>
 </html>
