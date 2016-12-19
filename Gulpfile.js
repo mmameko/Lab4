@@ -14,15 +14,15 @@ var path = {
 	systemJSCongif: "./system.config.js",
 	src: {
 		img: "",
-		js: "src/js/main.js",
+		js: "src/js/**/*.js",
 		styles: "src/styles/app.less",
-		html: "src/*.html"
+		html: "src/**/*.html"
 	},
 	build: {
 		img: "",
 		js: "build/js/",
 		styles: "build/styles/",
-		html: "build/"
+		html: "./build"
 	},
 	watch: {
 		html: "src/**/*.html",
@@ -33,7 +33,7 @@ var path = {
 
 var config = {
     server: {
-        baseDir: "./build/"
+        baseDir: "./build"
     },
     tunnel: false,
     host: '127.0.0.1',
@@ -54,16 +54,13 @@ gulp.task("build:html", function(){
 		}));
 });
 
-gulp.task("build:js", function(){
+gulp.task("build:js", function(){	
 	return gulp.src(path.src.js)
-		.pipe(babel({
-			presets: [ "es2015" ]
-		}))
 		.pipe(rigger())
 		.pipe(gulp.dest(path.build.js))
 		.pipe(reload({
 			stream: true
-		}));
+		}));	
 });
 
 gulp.task("build:styles", function(){

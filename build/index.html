@@ -1,24 +1,24 @@
 <!doctype html>
-<html>
+<html ng-app="app">
 	<head>
 		<title>Web Lab #4</title>
-				
-		<script src="../js/main.js"></script>
-		<link rel="stylesheet" href="../styles/app.css"/>
+			
+		<script src="js/main.js"></script>
+		<link rel="stylesheet" href="styles/app.css"/>
 	</head>
-	<body>
+	<body ng-controller="MainCtrl">
 		<div class="app-wrapper">
-			<header class="app-header">
+			<header class="app-header" id="header">
 				<section class="app-header_section app-header_section__left">
-					<input type="button" value="Test" class="btn btn__selected"/>
-					<input type="button" value="Settings" class="btn"/>
+					<a href="/#!/test" class="btn" id="test">Test</a>
+					<a href="/#!/settings" class="btn btn__selected" id="settings">Settings</a>		
 				</section>
 				<section class="app-header_section app-header_section__right">
-					<input type="button" value="Check" class="btn"/>		
+					<input type="button" value="Check" class="btn" id="check" ng-click="checkClick()"/>		
 				</section>	
 			</header>
-			<div class="app-content" ng-view>
-				Content
+			<div class="app-content">
+				<ng-view></ng-view>
 			</div>
 			<footer class="app-footer">
 				&copy Laboratory Work, 4th variant, Mameko Daria

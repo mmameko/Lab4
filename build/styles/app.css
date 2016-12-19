@@ -2,13 +2,19 @@
   background-color: #f6f6f6;
   height: 50px;
   line-height: 55px;
-  padding: 0 100px;
+  padding: 7px 100px 8px;
   border-bottom: 1px solid #c3c3c3;
 }
 .app-header_section {
   position: relative;
   display: inline-block;
   height: 100%;
+  line-height: 35px;
+}
+.app-header_section .btn {
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 .app-header_section .btn__selected {
   border-bottom: 2px solid #8f5ee0;
